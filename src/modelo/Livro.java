@@ -2,172 +2,202 @@ package modelo;
 
 import java.io.File;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Livro implements Serializable{
+public class Livro implements Serializable {
 
-	private int idLivro;
-	private LocalDate dataCadastroSistema;
-	private String classificacao;
-	private String areaConhecimento;
-	private String autores;
-	private String titulo;
-	private String ano;
-	private String isbn;
-	private String editora;
-	private int paginas;
+    private long cdBarra;
+    private int idLivro;
+    private String dataAquisicao;
+    private String dataCadastroSistema;
+    private String classificacao;
+    private int exemplar;
+    private String areaConhecimento;
+    private String autores;
+    private String titulo;
+    private String ano;
+    private String isbn;
+    private String editora;
+    private int paginas;
 
-	HashMap<Integer, Exemplar> exemplares;
 
-	public Livro() {
+    HashMap<Integer, Exemplar> exemplares;
 
-	}
+    public Livro() {
 
-	public Livro(int cdBarras, int idLivro, int exemplar, LocalDate dataAquisicaoExemplar,
-			LocalDate dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
-			String ano, String isbn, String editora, int paginas) {
-		super();
-		this.idLivro = idLivro;
-		this.dataCadastroSistema = dataCadastroSistema;
-		this.classificacao = classificacao;
-		this.areaConhecimento = areaConhecimento;
-		this.autores = autores;
-		this.titulo = titulo;
-		this.ano = ano;
-		this.isbn = isbn;
-		this.editora = editora;
-		this.paginas = paginas;
-		exemplares = new HashMap<Integer, Exemplar>();
-		AdicionaExemplar(new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
-	}
+    }
+    public long getCdBarra() {
+        return cdBarra;
+    }
 
-	public Livro(String cdBarras, String idLivro, String exemplar, String dataAquisicaoExemplar,
-			String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
-			String ano, String isbn, String editora, String paginas) {
-		this.idLivro = Integer.parseInt(idLivro);
-		this.dataCadastroSistema = LocalDate.parse(dataCadastroSistema, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		this.classificacao = classificacao;
-		this.areaConhecimento = areaConhecimento;
-		this.autores = autores;
-		this.titulo = titulo;
-		this.ano = ano;
-		this.isbn = isbn;
-		this.editora = editora;
-		this.paginas = Integer.parseInt(paginas);
-		exemplares = new HashMap<Integer, Exemplar>();
-		AdicionaExemplar(new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
-				LocalDate.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-	}
 
-	public void AdicionaExemplar(Exemplar exemplar) {
-		exemplares.put(exemplar.getCdBarras(), exemplar);
-	}
+    public Livro(int cdBarras, int idLivro, int exemplar, String dataAquisicaoExemplar,
+            String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
+            String ano, String isbn, String editora, int paginas) {
+        super();
+        this.idLivro = idLivro;
+        this.dataCadastroSistema = dataCadastroSistema;
+        this.classificacao = classificacao;
+        this.areaConhecimento = areaConhecimento;
+        this.autores = autores;
+        this.titulo = titulo;
+        this.ano = ano;
+        this.isbn = isbn;
+        this.editora = editora;
+        this.paginas = paginas;
+        exemplares = new HashMap<Integer, Exemplar>();
+        AdicionaExemplar(new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
+    }
 
-	public HashMap<Integer, Exemplar> getExemplares() {
-		return exemplares;
-	}
+//    public Livro(String cdBarras, String idLivro, String exemplar, String dataAquisicaoExemplar,
+//            String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
+//            String ano, String isbn, String editora, String paginas) {
+//        this.idLivro = Integer.parseInt(idLivro);
+//        this.dataCadastroSistema = String.parse(dataCadastroSistema, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//        this.classificacao = classificacao;
+//        this.areaConhecimento = areaConhecimento;
+//        this.autores = autores;
+//        this.titulo = titulo;
+//        this.ano = ano;
+//        this.isbn = isbn;
+//        this.editora = editora;
+//        this.paginas = Integer.parseInt(paginas);
+//        exemplares = new HashMap<Integer, Exemplar>();
+//        AdicionaExemplar(new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
+//                String.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+//    }
 
-	public LocalDate getDataCadastroSistema() {
-		return dataCadastroSistema;
-	}
+    public void AdicionaExemplar(Exemplar exemplar) {
+        exemplares.put(exemplar.getCdBarras(), exemplar);
+    }
 
-	public void setDataCadastroSistema(LocalDate dataCadastroSistema) {
-		this.dataCadastroSistema = dataCadastroSistema;
-	}
+    public HashMap<Integer, Exemplar> getExemplares() {
+        return exemplares;
+    }
 
-	public String getClassificacao() {
-		return classificacao;
-	}
+    public String getDataCadastroSistema() {
+        return dataCadastroSistema;
+    }
 
-	public void setClassificacao(String classificacao) {
-		this.classificacao = classificacao;
-	}
+    public void setDataCadastroSistema(String dataCadastroSistema) {
+        this.dataCadastroSistema = dataCadastroSistema;
+    }
 
-	public String getAreaConhecimento() {
-		return areaConhecimento;
-	}
+    public String getClassificacao() {
+        return classificacao;
+    }
 
-	public void setAreaConhecimento(String areaConhecimento) {
-		this.areaConhecimento = areaConhecimento;
-	}
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
 
-	public int getIdLivro() {
-		return idLivro;
-	}
+    public String getAreaConhecimento() {
+        return areaConhecimento;
+    }
 
-	public void setIdLivro(int idLivro) {
-		this.idLivro = idLivro;
-	}
+    public void setAreaConhecimento(String areaConhecimento) {
+        this.areaConhecimento = areaConhecimento;
+    }
 
-	public String getAutores() {
-		return autores;
-	}
+    public int getIdLivro() {
+        return idLivro;
+    }
 
-	public void setAutores(String autores) {
-		this.autores = autores;
-	}
+    public void setIdLivro(int idLivro) {
+        this.idLivro = idLivro;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public String getAutores() {
+        return autores;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public void setAutores(String autores) {
+        this.autores = autores;
+    }
 
-	public String getAno() {
-		return ano;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public void setAno(String ano) {
-		this.ano = ano;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public String getIsbn() {
-		return isbn;
-	}
+    public String getAno() {
+        return ano;
+    }
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
 
-	public String getEditora() {
-		return editora;
-	}
+    public String getIsbn() {
+        return isbn;
+    }
 
-	public void setEditora(String editora) {
-		this.editora = editora;
-	}
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-	public int getPaginas() {
-		return paginas;
-	}
+    public String getEditora() {
+        return editora;
+    }
 
-	public void setPaginas(int paginas) {
-		this.paginas = paginas;
-	}
+    public void setEditora(String editora) {
+        this.editora = editora;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Livro))
-			return false;
-		Livro other = (Livro) obj;
-		if (idLivro != other.idLivro)
-			return false;
-		return true;
-	}
+    public int getPaginas() {
+        return paginas;
+    }
 
-	@Override
-	public String toString() {
-		return "Livro [idLivro=" + idLivro + ", dataCadastroSistema=" + dataCadastroSistema + "]";
-	}
+    public void setPaginas(int paginas) {
+        this.paginas = paginas;
+    }
+
+        public void setCdBarra(long cdBarra) {
+        this.cdBarra = cdBarra;
+    }
+
+    public String getDataAquisicao() {
+        return dataAquisicao;
+    }
+
+    public void setDataAquisicao(String dataAquisicao) {
+        this.dataAquisicao = dataAquisicao;
+    }
+
+    public int getExemplar() {
+        return exemplar;
+    }
+
+    public void setExemplar(int exemplar) {
+        this.exemplar = exemplar;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Livro)) {
+            return false;
+        }
+        Livro other = (Livro) obj;
+        if (idLivro != other.idLivro) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Livro [idLivro=" + idLivro + ", dataCadastroSistema=" + dataCadastroSistema + "]";
+    }
 
     public HashMap<Integer, Livro> importarLivros() {
 
@@ -197,9 +227,9 @@ public class Livro implements Serializable{
                                     .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
                             contadorLivro++;
                         } else {
-                            Livro livro = new Livro(colunas[0], colunas[1], colunas[2], colunas[3], colunas[4],
+                            Livro livro = new Livro(Integer.parseInt(colunas[0]), Integer.parseInt(colunas[1]), Integer.parseInt(colunas[2]), colunas[3].toString(), colunas[4].toString(),
                                     colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-                                    colunas[11], colunas[12]);
+                                    colunas[11], Integer.parseInt(colunas[12]));
                             livros.put(livro.getIdLivro(), livro);
                         }
                         contadorExemplar++;

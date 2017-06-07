@@ -9,64 +9,65 @@ import modelo.Livro;
 
 public class LivroDao extends DAO_Binario_Generico {
 
-	public HashMap<Integer, Livro> importarLivros() {
+    public HashMap<Integer, Livro> importarLivros() {
 
-		HashMap<Integer, Livro> livros = new HashMap<Integer, Livro>();
-		String pastaDestino = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\livros.ser") + "livros.ser";
-		int contadorExemplar = 0;
-		int contadorLivro = 0;
-		Scanner teclado = null;
-		String linha;
-		String[] colunas;
+        HashMap<Integer, Livro> livros = new HashMap<Integer, Livro>();
+        String pastaDestino = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\livros.ser") + "livros.ser";
+        int contadorExemplar = 0;
+        int contadorLivro = 0;
+        Scanner teclado = null;
+        String linha;
+        String[] colunas;
 
-		try {
+        try {
 
-			teclado = new Scanner(new File(pastaDestino));
+            teclado = new Scanner(new File(pastaDestino));
 
-			while (teclado.hasNext()) {
+            while (teclado.hasNext()) {
 
-				linha = (String) teclado.nextLine();
+                linha = (String) teclado.nextLine();
 
-				if (linha.contains("codigoDeBarras")) {
-					continue;
-				} else {
-					colunas = linha.split("\\|");
-					if (colunas.length == 13) {
-						if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
-							((Livro) livros.get(Integer.parseInt(colunas[1])))
-									.AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
-							contadorLivro++;
-						} else {
-							Livro livro = new Livro(colunas[0], colunas[1], colunas[2], colunas[3], colunas[4],
-									colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-									colunas[11], colunas[12]);
-							livros.put(livro.getIdLivro(), livro);
-						}
-						contadorExemplar++;
-					}
-				}
+                if (linha.contains("codigoDeBarras")) {
+                    continue;
+                } else {
+                    colunas = linha.split("\\|");
+                    if (colunas.length == 13) {
+                        if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
+                            ((Livro) livros.get(Integer.parseInt(colunas[1])))
+                                    .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
+                            contadorLivro++;
+                        } else {
+                            Livro livro = new Livro(Integer.parseInt(colunas[0]), Integer.parseInt(colunas[1]), Integer.parseInt(colunas[2]), colunas[3].toString(), colunas[4].toString(),
+                                    colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
+                                    colunas[11], Integer.parseInt(colunas[12]));
 
-			}
+                            livros.put(livro.getIdLivro(), livro);
+                        }
+                        contadorExemplar++;
+                    }
+                }
 
-		} catch (Exception e) {
-			System.out.println("Erro:" + e.getMessage());
-		} finally {
-			teclado.close();
-		}
+            }
 
-		System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
-		return livros;
-	}
+        } catch (Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+        } finally {
+            teclado.close();
+        }
 
-	@Override
-	public <K, V> HashMap<K, V> ler() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
+        return livros;
+    }
 
-	@Override
-	public <K, V> void salvar(HashMap<K, V> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public <K, V> HashMap<K, V> ler() throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public <K, V> void salvar(HashMap<K, V> map) throws Exception {
+        // TODO Auto-generated method stub
+
+    }
 }

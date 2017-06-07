@@ -1,16 +1,15 @@
 package modelo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Exemplar implements Serializable{
 
     private int cdBarras;
     private int exemplar;
-    private LocalDate dataAquisicaoExemplar;
+    private String dataAquisicaoExemplar;
 
-    public Exemplar(int cdBarras, int exemplar, LocalDate dataAquisicaoExemplar) {
+    public Exemplar(int cdBarras, int exemplar, String dataAquisicaoExemplar) {
         super();
         this.cdBarras = cdBarras;
         this.exemplar = exemplar;
@@ -20,10 +19,10 @@ public class Exemplar implements Serializable{
     public Exemplar(String cdBarras, String exemplar, String dataAquisicaoExemplar) {
         int cdBarrasInt = Integer.parseInt(cdBarras);
         int exemplarInt = Integer.parseInt(exemplar);
-        LocalDate dateLD = LocalDate.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        DateTimeFormatter dateString = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.cdBarras = cdBarrasInt;
         this.exemplar = exemplarInt;
-        this.dataAquisicaoExemplar = dateLD;
+        this.dataAquisicaoExemplar = dateString.toString();
     }
 
     public int getCdBarras() {
@@ -42,11 +41,11 @@ public class Exemplar implements Serializable{
         this.exemplar = exemplar;
     }
 
-    public LocalDate getDataAquisicaoExemplar() {
+    public String getDataAquisicaoExemplar() {
         return dataAquisicaoExemplar;
     }
 
-    public void setDataAquisicaoExemplar(LocalDate dataAquisicaoExemplar) {
+    public void setDataAquisicaoExemplar(String dataAquisicaoExemplar) {
         this.dataAquisicaoExemplar = dataAquisicaoExemplar;
     }
 

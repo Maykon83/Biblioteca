@@ -12,7 +12,7 @@ public class LivroDao {
     public void saveAllLivros(HashMap<String, Livro> livros) {
         FileOutputStream fout = null;
         try {
-            fout = new FileOutputStream("F:\\NetBeansProjects\\Nova_Biblioteca\\Acervo\\Acervo.xml");
+            fout = new FileOutputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Livros.xml");
             BufferedOutputStream bos = new BufferedOutputStream(fout);
             XMLEncoder xmlEncoder = new XMLEncoder(bos);
             xmlEncoder.writeObject(livros);
@@ -25,7 +25,7 @@ public class LivroDao {
     public HashMap<String, Livro> loadAll() {
         HashMap<String, Livro> livros = new HashMap();
         try {
-            FileInputStream fis = new FileInputStream("F:\\NetBeansProjects\\Nova_Biblioteca\\Acervo\\Acervo.xml");
+            FileInputStream fis = new FileInputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Livro.xml");
             BufferedInputStream bis = new BufferedInputStream(fis);
             XMLDecoder xmlDecoder = new XMLDecoder(bis);
             livros = (HashMap<String, Livro>) xmlDecoder.readObject();
@@ -63,9 +63,10 @@ public class LivroDao {
                                     .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
                             contadorLivro++;
                         } else {
-                            Livro livro = new Livro(colunas[0], colunas[1], colunas[2], colunas[3], colunas[4],
+                             Livro livro = new Livro(Integer.parseInt(colunas[0]), Integer.parseInt(colunas[1]), Integer.parseInt(colunas[2]), colunas[3].toString(), colunas[4].toString(),
                                     colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-                                    colunas[11], colunas[12]);
+                                    colunas[11], Integer.parseInt(colunas[12]));
+
                             livros.put(livro.getIdLivro(), livro);
                         }
                         contadorExemplar++;

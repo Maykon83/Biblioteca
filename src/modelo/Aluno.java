@@ -6,6 +6,10 @@ public class Aluno {
     private String nome;
     private String matricula;
 
+    public Aluno(){
+   
+    }
+    
     public Aluno(String cpf, String nome, String matricula) {
         super();
         this.cpf = cpf;
