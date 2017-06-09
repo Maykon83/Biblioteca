@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_131" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>987652</string>
+   <object class="modelo.Aluno">
+    <void property="cpf">
+     <string>123458</string>
+    </void>
+    <void property="matricula">
+     <string>987652</string>
+    </void>
+    <void property="nome">
+     <string>Maykon</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>987654</string>
+   <object class="modelo.Aluno">
+    <void property="cpf">
+     <string>123456</string>
+    </void>
+    <void property="matricula">
+     <string>987654</string>
+    </void>
+    <void property="nome">
+     <string>Maykon</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>987653</string>
+   <object class="modelo.Aluno">
+    <void property="cpf">
+     <string>123457</string>
+    </void>
+    <void property="matricula">
+     <string>987653</string>
+    </void>
+    <void property="nome">
+     <string>Maykon</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
