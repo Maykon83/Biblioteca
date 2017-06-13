@@ -2,20 +2,48 @@ package DAO.xml;
 
 import java.io.IOException;
 import java.util.HashMap;
+import modelo.Emprestimo;
+import DAO.interfaces.EmprestimoDAOInterface;
 
-public class Emprestimo_DAO extends DAO_XML_Generico {
-    private String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
-			+ "emprestimos.xml";
+public class Emprestimo_DAO extends DAO_XML_Generico implements EmprestimoDAOInterface {
 
-	@Override
-	public HashMap<Long, Emprestimo_DAO> ler() throws IOException, Exception {
-		return carregarArquivo(endereco);
-	}
+    private final String endereco = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\Emprestimo.xml")
+            + "emprestimos.xml";
 
-	@Override
-	public <Long, Emprestimo> void salvar(HashMap<Long, Emprestimo> map) throws IOException, Exception {
-		salvarArquivo(map, endereco);
-	}
+    @Override
+    public HashMap<Long, Emprestimo> ler() throws IOException {
+        return carregarArquivo(endereco);
+    }
 
-    
+    @Override
+    public <Long, Emprestimo> void salvar(HashMap<Long, Emprestimo> map) throws IOException {
+        salvarArquivo(map, endereco);
+    }
+
+    @Override
+    public Emprestimo buscarEmprestimo(long cdEmprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        return emprestimos.get(cdEmprestimo);
+    }
+
+    @Override
+    public void salvarEmprestimo(Emprestimo emprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.put(emprestimo.getCdEmprestimo(), emprestimo);
+        salvar(emprestimos);
+    }
+
+    @Override
+    public void removerEmprestimo(Emprestimo emprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.remove(emprestimo.getCdEmprestimo());
+        salvar(emprestimos);
+    }
+
+    @Override
+    public void removerEmprestimo(long cdEmprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.remove(cdEmprestimo);
+        salvar(emprestimos);
+    }
 }

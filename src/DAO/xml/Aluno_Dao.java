@@ -1,41 +1,50 @@
 package DAO.xml;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import modelo.Aluno;
-import modelo.Livro;
+import DAO.interfaces.AlunoDAOInterface;
 
-public class Aluno_Dao {
-    
-    public void saveAllAluno(HashMap<String, Aluno> aluno) {
-        FileOutputStream fout = null;
-        try {
-            fout = new FileOutputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Aluno.xml");
-            BufferedOutputStream bos = new BufferedOutputStream(fout);
-            XMLEncoder xmlEncoder = new XMLEncoder(bos);
-            xmlEncoder.writeObject(aluno);
-            xmlEncoder.close();
-        } catch (Exception ex) {
-            System.out.println("Erro: " + ex.getMessage());
-        }
+public class Aluno_Dao extends DAO_XML_Generico implements AlunoDAOInterface {
+
+    private final String endereco = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\Aluno.xml")
+            + "alunos.xml";
+
+    @Override
+    public HashMap<Long, Aluno> ler() throws IOException {
+        return carregarArquivo(endereco);
     }
 
-    public HashMap<String, Aluno> loadAll() {
-        HashMap<String, Aluno> aluno = new HashMap();
-        try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Aluno.xml");
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            XMLDecoder xmlDecoder = new XMLDecoder(bis);
-            aluno = (HashMap<String, Aluno>) xmlDecoder.readObject();
-        } catch (Exception e) {
-            System.out.println("erro ao ler");
-        }
-        return aluno;
+    @Override
+    public <Long, Aluno> void salvar(HashMap<Long, Aluno> map) throws IOException {
+        salvarArquivo(map, endereco);
+    }
+
+    @Override
+    public Aluno buscarAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        return alunos.get(codAluno);
+    }
+
+    @Override
+    public void salvarAluno(Aluno aluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.put(aluno.getCodAluno(), aluno);
+        salvar(alunos);
+    }
+
+    @Override
+    public void removerAluno(Aluno aluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(aluno.getCodAluno());
+        salvar(alunos);
+    }
+
+    @Override
+    public void removerAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(codAluno);
+        salvar(alunos);
     }
 
 }

@@ -1,87 +1,48 @@
 package DAO.xml;
 
-import java.beans.*;
-import java.io.*;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Scanner;
-import modelo.Exemplar;
 import modelo.Livro;
+import DAO.interfaces.LivroDAOInterface;
 
-public class LivroDao {
+public class LivroDao extends DAO_XML_Generico implements LivroDAOInterface {
 
-    public void saveAllLivros(HashMap<String, Livro> livros) {
-        FileOutputStream fout = null;
-        try {
-            fout = new FileOutputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Livros.xml");
-            BufferedOutputStream bos = new BufferedOutputStream(fout);
-            XMLEncoder xmlEncoder = new XMLEncoder(bos);
-            xmlEncoder.writeObject(livros);
-            xmlEncoder.close();
-        } catch (Exception ex) {
-            System.out.println("Erro: " + ex.getMessage());
-        }
+    private String endereco = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\Livros.xml") + "livros.xml";
+
+    @Override
+    public HashMap<Integer, Livro> ler() throws IOException {
+        return carregarArquivo(endereco);
     }
 
-    public HashMap<String, Livro> loadAll() {
-        HashMap<String, Livro> livros = new HashMap();
-        try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca\\Livro.xml");
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            XMLDecoder xmlDecoder = new XMLDecoder(bis);
-            livros = (HashMap<String, Livro>) xmlDecoder.readObject();
-        } catch (Exception e) {
-            System.out.println("erro ao ler");
-        }
-        return livros;
+    @Override
+    public <Integer, Livro> void salvar(HashMap<Integer, Livro> map) throws IOException {
+        salvarArquivo(map, endereco);
     }
 
-    public HashMap<Integer, Livro> importarLivros() {
+    @Override
+    public Livro buscarLivro(int idLivro) throws IOException {
+        HashMap<java.lang.Integer, modelo.Livro> livros = ler();
+        return livros.get(idLivro);
+    }
 
-        HashMap<Integer, Livro> livros = new HashMap<Integer, Livro>();
-        String pastaDestino = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.xml";
-        int contadorExemplar = 0;
-        int contadorLivro = 0;
-        Scanner teclado = null;
-        String linha;
-        String[] colunas;
+    @Override
+    public void salvarLivro(Livro livro) throws IOException {
+        HashMap<java.lang.Integer, modelo.Livro> livros = ler();
+        livros.put(livro.getIdLivro(), livro);
+        salvar(livros);
+    }
 
-        try {
+    @Override
+    public void removerLivro(Livro livro) throws IOException {
+        HashMap<java.lang.Integer, modelo.Livro> livros = ler();
+        livros.remove(livro.getIdLivro());
+        salvar(livros);
+    }
 
-            teclado = new Scanner(new File(pastaDestino));
-
-            while (teclado.hasNext()) {
-
-                linha = (String) teclado.nextLine();
-
-                if (linha.contains("codigoDeBarras")) {
-                    continue;
-                } else {
-                    colunas = linha.split("\\|");
-                    if (colunas.length == 13) {
-                        if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
-                            ((Livro) livros.get(Integer.parseInt(colunas[1])))
-                                    .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
-                            contadorLivro++;
-                        } else {
-                             Livro livro = new Livro(Integer.parseInt(colunas[0]), Integer.parseInt(colunas[1]), Integer.parseInt(colunas[2]), colunas[3].toString(), colunas[4].toString(),
-                                    colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-                                    colunas[11], Integer.parseInt(colunas[12]));
-
-                            livros.put(livro.getIdLivro(), livro);
-                        }
-                        contadorExemplar++;
-                    }
-                }
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro:" + e.getMessage());
-        } finally {
-            teclado.close();
-        }
-
-        System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
-        return livros;
+    @Override
+    public void removerLivro(int idLivro) throws IOException {
+        HashMap<java.lang.Integer, modelo.Livro> livros = ler();
+        livros.remove(idLivro);
+        salvar(livros);
     }
 }

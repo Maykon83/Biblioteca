@@ -1,18 +1,15 @@
 package modelo;
 
-import java.io.File;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Livro implements Serializable {
 
-    private long cdBarra;
     private int idLivro;
-    private String dataAquisicao;
-    private String dataCadastroSistema;
+    private LocalDate dataCadastroSistema;
     private String classificacao;
-    private int exemplar;
     private String areaConhecimento;
     private String autores;
     private String titulo;
@@ -21,19 +18,14 @@ public class Livro implements Serializable {
     private String editora;
     private int paginas;
 
-
     HashMap<Integer, Exemplar> exemplares;
 
     public Livro() {
 
     }
-    public long getCdBarra() {
-        return cdBarra;
-    }
 
-
-    public Livro(int cdBarras, int idLivro, int exemplar, String dataAquisicaoExemplar,
-            String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
+    public Livro(int cdBarras, int idLivro, int exemplar, LocalDate dataAquisicaoExemplar,
+            LocalDate dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
             String ano, String isbn, String editora, int paginas) {
         super();
         this.idLivro = idLivro;
@@ -46,27 +38,27 @@ public class Livro implements Serializable {
         this.isbn = isbn;
         this.editora = editora;
         this.paginas = paginas;
-        exemplares = new HashMap<Integer, Exemplar>();
-        AdicionaExemplar(new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
+        exemplares = new HashMap<>();
+        exemplares.put(cdBarras, new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
     }
 
-//    public Livro(String cdBarras, String idLivro, String exemplar, String dataAquisicaoExemplar,
-//            String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
-//            String ano, String isbn, String editora, String paginas) {
-//        this.idLivro = Integer.parseInt(idLivro);
-//        this.dataCadastroSistema = String.parse(dataCadastroSistema, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//        this.classificacao = classificacao;
-//        this.areaConhecimento = areaConhecimento;
-//        this.autores = autores;
-//        this.titulo = titulo;
-//        this.ano = ano;
-//        this.isbn = isbn;
-//        this.editora = editora;
-//        this.paginas = Integer.parseInt(paginas);
-//        exemplares = new HashMap<Integer, Exemplar>();
-//        AdicionaExemplar(new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
-//                String.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-//    }
+    public Livro(String cdBarras, String idLivro, String exemplar, String dataAquisicaoExemplar,
+            String dataCadastroSistema, String classificacao, String areaConhecimento, String autores, String titulo,
+            String ano, String isbn, String editora, String paginas) {
+        this.idLivro = Integer.parseInt(idLivro);
+        this.dataCadastroSistema = LocalDate.parse(dataCadastroSistema, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.classificacao = classificacao;
+        this.areaConhecimento = areaConhecimento;
+        this.autores = autores;
+        this.titulo = titulo;
+        this.ano = ano;
+        this.isbn = isbn;
+        this.editora = editora;
+        this.paginas = Integer.parseInt(paginas);
+        exemplares = new HashMap<>();
+        exemplares.put(Integer.parseInt(cdBarras), new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
+                LocalDate.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+    }
 
     public void AdicionaExemplar(Exemplar exemplar) {
         exemplares.put(exemplar.getCdBarras(), exemplar);
@@ -76,11 +68,11 @@ public class Livro implements Serializable {
         return exemplares;
     }
 
-    public String getDataCadastroSistema() {
+    public LocalDate getDataCadastroSistema() {
         return dataCadastroSistema;
     }
 
-    public void setDataCadastroSistema(String dataCadastroSistema) {
+    public void setDataCadastroSistema(LocalDate dataCadastroSistema) {
         this.dataCadastroSistema = dataCadastroSistema;
     }
 
@@ -156,26 +148,6 @@ public class Livro implements Serializable {
         this.paginas = paginas;
     }
 
-        public void setCdBarra(long cdBarra) {
-        this.cdBarra = cdBarra;
-    }
-
-    public String getDataAquisicao() {
-        return dataAquisicao;
-    }
-
-    public void setDataAquisicao(String dataAquisicao) {
-        this.dataAquisicao = dataAquisicao;
-    }
-
-    public int getExemplar() {
-        return exemplar;
-    }
-
-    public void setExemplar(int exemplar) {
-        this.exemplar = exemplar;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -188,10 +160,7 @@ public class Livro implements Serializable {
             return false;
         }
         Livro other = (Livro) obj;
-        if (idLivro != other.idLivro) {
-            return false;
-        }
-        return true;
+        return idLivro == other.idLivro;
     }
 
     @Override
@@ -199,52 +168,4 @@ public class Livro implements Serializable {
         return "Livro [idLivro=" + idLivro + ", dataCadastroSistema=" + dataCadastroSistema + "]";
     }
 
-    public HashMap<Integer, Livro> importarLivros() {
-
-        HashMap<Integer, Livro> livros = new HashMap<Integer, Livro>();
-        String pastaDestino = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.csv";
-        int contadorExemplar = 0;
-        int contadorLivro = 0;
-        Scanner teclado = null;
-        String linha;
-        String[] colunas;
-
-        try {
-
-            teclado = new Scanner(new File(pastaDestino));
-
-            while (teclado.hasNext()) {
-
-                linha = (String) teclado.nextLine();
-
-                if (linha.contains("codigoDeBarras")) {
-                    continue;
-                } else {
-                    colunas = linha.split("\\|");
-                    if (colunas.length == 13) {
-                        if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
-                            ((Livro) livros.get(Integer.parseInt(colunas[1])))
-                                    .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
-                            contadorLivro++;
-                        } else {
-                            Livro livro = new Livro(Integer.parseInt(colunas[0]), Integer.parseInt(colunas[1]), Integer.parseInt(colunas[2]), colunas[3].toString(), colunas[4].toString(),
-                                    colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-                                    colunas[11], Integer.parseInt(colunas[12]));
-                            livros.put(livro.getIdLivro(), livro);
-                        }
-                        contadorExemplar++;
-                    }
-                }
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro:" + e.getMessage());
-        } finally {
-            teclado.close();
-        }
-
-        System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
-        return livros;
-    }
 }

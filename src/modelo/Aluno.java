@@ -1,28 +1,25 @@
 package modelo;
 
-public class Aluno {
+import java.io.Serializable;
 
+public class Aluno implements Serializable {
+
+    private final long codAluno;
     private String cpf;
     private String nome;
-    private String matricula;
 
-    public Aluno(){
-   
-    }
-    
-    public Aluno(String cpf, String nome, String matricula) {
-        super();
+    public Aluno(String cpf, String nome) {
+      //  super();
+        codAluno = System.currentTimeMillis();
         this.cpf = cpf;
         this.nome = nome;
-        this.matricula = matricula;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public Aluno(String cpf, String nome, long codAluno) {
+      //  super();
+        this.codAluno = codAluno;
+        this.cpf = cpf;
+        this.nome = nome;
     }
 
     public String getCpf() {
@@ -41,6 +38,10 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public long getCodAluno() {
+        return codAluno;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -53,14 +54,11 @@ public class Aluno {
             return false;
         }
         Aluno other = (Aluno) obj;
-        if (cpf == null) {
-            if (other.cpf != null) {
-                return false;
-            }
-        } else if (!cpf.equals(other.cpf)) {
-            return false;
-        }
-        return true;
+        return codAluno == other.codAluno;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno{" + "cpf=" + cpf + ", nome=" + nome + '}';
+    }
 }
