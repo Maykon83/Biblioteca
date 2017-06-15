@@ -20,7 +20,7 @@ public class TestesEmprestimo {
 
         Livro livro = new Livro(0, 0, 0, LocalDate.MAX, LocalDate.MIN, "clas", "area", "autores", "titulo", "1990", "123456", "123", 0);
         System.out.println("Criando Livro: " + livro);
-        Aluno aluno = new Aluno("123", "Fernando");
+        Aluno aluno = new Aluno("123", "Maykon Jimi Machado");
         System.out.println("Criando Aluno: " + aluno);
         Emprestimo emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 123);
         System.out.println("Criando emprestimo: " + emprestimo);
@@ -44,7 +44,7 @@ public class TestesEmprestimo {
 
         Livro livro = new Livro(0, 0, 0, LocalDate.MAX, LocalDate.MIN, "clas", "area", "autores", "titulo", "1990", "123456", "123", 0);
 
-        Aluno aluno = new Aluno("123", "Fernando");
+        Aluno aluno = new Aluno("123", "Maykon Jimi Machado");
 
         emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 12345);
 

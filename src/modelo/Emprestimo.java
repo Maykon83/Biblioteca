@@ -12,7 +12,7 @@ public class Emprestimo implements Serializable {
     private LocalDate dtEmprestimo;
     private LocalDate dtDevolucao;
     private boolean quitado = false;
-    private final int maxDiasEmprestimo = 14;
+    private final int maxDiasEmprestimo = 10;
 
     public Emprestimo(Aluno aluno, Livro livro, LocalDate dtEmprestimo, long cdEmprestimo) throws Exception {
         if (dtEmprestimo == null) {
