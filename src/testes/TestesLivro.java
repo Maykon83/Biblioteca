@@ -19,7 +19,7 @@ public class TestesLivro {
      * @throws IOException
      */
     public void testeCriarSalvarLivro() throws IOException {
-        System.out.println("Teste criaLivro:");
+        System.out.println("Teste cria Livro:");
         Livro livro = new Livro(1, 1, 1, LocalDate.now(), LocalDate.now(), "minhaClas", "minhaArea", "eu e eu", "Lirvro", "1990", "123456	", "editoraMaster", 35);
         System.out.println("Criando Livro: " + livro);
         System.out.println("Salvando..");
@@ -34,7 +34,7 @@ public class TestesLivro {
      * @throws IOException
      */
     public void testeBuscarLivro() throws IOException {
-        System.out.println("Teste buscaLivro:");
+        System.out.println("Teste busca Livro:");
         dao.removerLivro(12345);
         Livro livro = dao.buscarLivro(12345);
         System.out.println("Buscando livro que não existe:");
@@ -43,7 +43,7 @@ public class TestesLivro {
         } else {
             System.out.println("Não encontrou o livro.");
         }
-        livro = new Livro(1, 12345, 1, LocalDate.now(), LocalDate.now(), "minhaClas", "minhaArea", "eu e eu", "Lirvro", "1990", "123456	", "editoraMaster", 35);
+        livro = new Livro(1, 12345, 1, LocalDate.now(), LocalDate.now(), "minhaClass", "minhaArea", "eu e eu", "Lirvro", "1990", "123456", "editoraMaster", 35);
         System.out.println("Criando Livro: " + livro);
         dao.salvarLivro(livro);
 
@@ -56,6 +56,6 @@ public class TestesLivro {
         }
 
         dao.removerLivro(livro);
-        System.out.println("Fim teste buscaLivro. \r\n");
+        System.out.println("Fim teste busca Livro. \r\n");
     }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_131" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <int>1</int>
+   <object class="modelo.Livro">
+    <void property="ano">
+     <string>1990</string>
+    </void>
+    <void property="areaConhecimento">
+     <string>minhaArea</string>
+    </void>
+    <void property="autores">
+     <string>eu e eu</string>
+    </void>
+    <void property="classificacao">
+     <string>minhaClas</string>
+    </void>
+    <void property="dataCadastroSistema">
+     <object class="java.time.LocalDate" method="parse">
+      <string>2017-06-23</string>
+     </object>
+    </void>
+    <void property="editora">
+     <string>editoraMaster</string>
+    </void>
+    <void property="idLivro">
+     <int>1</int>
+    </void>
+    <void property="isbn">
+     <string>123456	</string>
+    </void>
+    <void property="paginas">
+     <int>35</int>
+    </void>
+    <void property="titulo">
+     <string>Lirvro</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

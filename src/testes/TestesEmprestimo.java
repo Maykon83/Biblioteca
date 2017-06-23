@@ -31,7 +31,7 @@ public class TestesEmprestimo {
     }
 
     public void testeBuscaEmprestimo() throws IOException, Exception {
-        System.out.println("Teste buscaEmprestimo");
+        System.out.println("Teste busca Emprestimo");
 
         dao.removerEmprestimo(12345);
         Emprestimo emprestimo = dao.buscarEmprestimo(12345);
@@ -60,6 +60,6 @@ public class TestesEmprestimo {
         }
 
         dao.removerEmprestimo(emprestimo);
-        System.out.println("Fim teste buscaEmprestimo. \r\n");
+        System.out.println("Fim teste busca Emprestimo. \r\n");
     }
 }

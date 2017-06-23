@@ -1,9 +1,11 @@
 package principal;
 
-import DAO.binario.Aluno_Dao;
-//import DAO.xml.Emprestimo_DAO;
-import DAO.binario.Emprestimo_DAO;
-import DAO.binario.LivroDao;
+//import DAO.binario.Aluno_Dao;
+import DAO.xml.Aluno_Dao;
+//import DAO.binario.Emprestimo_DAO;
+import DAO.xml.Emprestimo_DAO;
+//import DAO.binario.LivroDao;
+import DAO.xml.LivroDao;
 import DAO.interfaces.AlunoDAOInterface;
 import DAO.interfaces.EmprestimoDAOInterface;
 import DAO.interfaces.LivroDAOInterface;

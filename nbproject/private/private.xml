@@ -2,6 +2,27 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/modelo/Exemplar.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/testes/TestesAluno.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/modelo/Aluno.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/interfaces/DAOInterface.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/modelo/Livro.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/binario/Aluno_Dao.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/xml/Emprestimo_DAO.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/binario/DAO_Binario_Generico.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/interfaces/AlunoDAOInterface.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/xml/LivroDao.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/xml/Aluno_Dao.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/binario/LivroDao.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/principal/Principal.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/xml/DAO_XML_Generico.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/modelo/Emprestimo.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/binario/Emprestimo_DAO.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/testes/TestesEmprestimo.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/interfaces/LivroDAOInterface.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/DAO/interfaces/EmprestimoDAOInterface.java</file>
+            <file>file:/C:/Users/Maykon/Documents/NetBeansProjects/Nova_Biblioteca/src/Repositorio/CriarRepositorios.java</file>
+        </group>
     </open-files>
 </project-private>

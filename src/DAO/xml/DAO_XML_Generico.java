@@ -54,6 +54,8 @@ public abstract class DAO_XML_Generico implements DAOInterface {
             buffer = new BufferedInputStream(inputStream);
             xmldec = new XMLDecoder(buffer);
             map = (HashMap<K, V>) xmldec.readObject();
+        } catch (IOException e) {
+            System.out.println("ERRO! " + e.getMessage());
         } finally {
             if (buffer != null) {
                 buffer.close();
@@ -64,8 +66,10 @@ public abstract class DAO_XML_Generico implements DAOInterface {
             if (xmldec != null) {
                 xmldec.close();
             }
+
+            return map;
         }
-        return map;
+
     }
 
 }

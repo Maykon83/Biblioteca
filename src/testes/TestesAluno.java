@@ -13,8 +13,8 @@ public class TestesAluno {
     }
 
     public void testeCriarSalvarAluno() throws IOException {
-        System.out.println("Teste criaAluno:");
-        Aluno aluno = new Aluno("06254252856", "Maykon Jimi Machado");
+        System.out.println("Teste cria Aluno:");
+        Aluno aluno = new Aluno("2016007374", "Maykon Jimi Machado");
         System.out.println("Criando Aluno: " + aluno);
         System.out.println("Salvando..");
         dao.salvarAluno(aluno);
@@ -28,7 +28,7 @@ public class TestesAluno {
      * @throws IOException
      */
     public void testeBuscarAluno() throws IOException {
-        System.out.println("Teste buscaAluno:");
+        System.out.println("Teste busca Aluno:");
         dao.removerAluno(12345);
         Aluno aluno = dao.buscarAluno(12345);
         System.out.println("Buscando aluno que não existe:");
@@ -50,6 +50,6 @@ public class TestesAluno {
         }
 
         dao.removerAluno(aluno);
-        System.out.println("Fim teste buscaAluno. \r\n");
+        System.out.println("Fim teste busca Aluno. \r\n");
     }
 }

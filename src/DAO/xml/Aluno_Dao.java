@@ -8,7 +8,7 @@ import DAO.interfaces.AlunoDAOInterface;
 public class Aluno_Dao extends DAO_XML_Generico implements AlunoDAOInterface {
 
     private final String endereco = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\Aluno.xml")
-            + "alunos.xml";
+            + "Alunos.xml";
 
     @Override
     public HashMap<Long, Aluno> ler() throws IOException {
