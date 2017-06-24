@@ -8,7 +8,7 @@ import DAO.interfaces.EmprestimoDAOInterface;
 public class Emprestimo_DAO extends DAO_Binario_Generico implements EmprestimoDAOInterface {
 
     private final String endereco = System.getProperty("C:\\Users\\Maykon\\Documents\\NetBeansProjects\\Nova_Biblioteca") + System.getProperty("\\Emprestimo.bin")
-            + "emprestimos.bin";
+            + "Emprestimos.bin";
 
     @Override
     public HashMap<Long, Emprestimo> ler() throws IOException {

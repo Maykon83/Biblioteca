@@ -9,10 +9,10 @@ import DAO.xml.LivroDao;
 import DAO.interfaces.AlunoDAOInterface;
 import DAO.interfaces.EmprestimoDAOInterface;
 import DAO.interfaces.LivroDAOInterface;
-import java.io.IOException;
 import testes.TestesAluno;
 import testes.TestesEmprestimo;
 import testes.TestesLivro;
+import java.io.IOException;
 
 public class Principal {
 

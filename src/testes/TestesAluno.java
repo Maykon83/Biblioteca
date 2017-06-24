@@ -18,7 +18,7 @@ public class TestesAluno {
         System.out.println("Criando Aluno: " + aluno);
         System.out.println("Salvando..");
         dao.salvarAluno(aluno);
-        System.out.println("Fim teste criaAluno. \r\n");
+        System.out.println("Fim teste cria Aluno. \r\n");
     }
 
     /**
@@ -29,27 +29,27 @@ public class TestesAluno {
      */
     public void testeBuscarAluno() throws IOException {
         System.out.println("Teste busca Aluno:");
-        dao.removerAluno(12345);
-        Aluno aluno = dao.buscarAluno(12345);
+        dao.removerAluno(2016007374);
+        Aluno aluno = dao.buscarAluno(2016007374);
         System.out.println("Buscando aluno que não existe:");
         if (aluno != null) {
             System.out.println("Encontrou o aluno: " + aluno);
         } else {
             System.out.println("Não encontrou o aluno.");
         }
-        aluno = new Aluno("0000654", "Aluno Teste", 12345);
+        aluno = new Aluno("0000654", "Maykon Jimi Machado", 2016007374);
         System.out.println("Criando Aluno: " + aluno);
         dao.salvarAluno(aluno);
 
-        System.out.println("Buscar aluno por CD: 12345");
-        aluno = dao.buscarAluno(12345);
+        System.out.println("Buscar aluno por CD: 2016007374");
+        aluno = dao.buscarAluno(2016007374);
         if (aluno != null) {
             System.out.println("Encontrou o aluno: " + aluno);
         } else {
             System.out.println("Não encontrou o aluno.");
         }
 
-        dao.removerAluno(aluno);
+       // dao.removerAluno(aluno);
         System.out.println("Fim teste busca Aluno. \r\n");
     }
 }

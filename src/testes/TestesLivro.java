@@ -43,7 +43,7 @@ public class TestesLivro {
         } else {
             System.out.println("Não encontrou o livro.");
         }
-        livro = new Livro(1, 12345, 1, LocalDate.now(), LocalDate.now(), "minhaClass", "minhaArea", "eu e eu", "Lirvro", "1990", "123456", "editoraMaster", 35);
+        livro = new Livro(1, 12345, 1, LocalDate.now(), LocalDate.now(), "minhaClass", "minhaArea", "eu e eu", "Livro", "1990", "123456", "editoraMaster", 35);
         System.out.println("Criando Livro: " + livro);
         dao.salvarLivro(livro);
 

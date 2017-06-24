@@ -33,8 +33,8 @@ public class TestesEmprestimo {
     public void testeBuscaEmprestimo() throws IOException, Exception {
         System.out.println("Teste busca Emprestimo");
 
-        dao.removerEmprestimo(12345);
-        Emprestimo emprestimo = dao.buscarEmprestimo(12345);
+        dao.removerEmprestimo(2016007374);
+        Emprestimo emprestimo = dao.buscarEmprestimo(2016007374);
         System.out.println("Buscando emprestimo que não existe:");
         if (emprestimo != null) {
             System.out.println("Encontrou o emprestimo: " + emprestimo);
@@ -46,20 +46,20 @@ public class TestesEmprestimo {
 
         Aluno aluno = new Aluno("123", "Maykon Jimi Machado");
 
-        emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 12345);
+        emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 2016007374);
 
         System.out.println("Criando Emprestimo: " + emprestimo);
         dao.salvarEmprestimo(emprestimo);
 
-        System.out.println("Buscar emprestimo por ID: 12345");
-        emprestimo = dao.buscarEmprestimo(12345);
+        System.out.println("Buscar emprestimo por ID: 2016007374");
+        emprestimo = dao.buscarEmprestimo(2016007374);
         if (emprestimo != null) {
             System.out.println("Encontrou o emprestimo: " + emprestimo);
         } else {
             System.out.println("Não encontrou o emprestimo.");
         }
 
-        dao.removerEmprestimo(emprestimo);
+//        dao.removerEmprestimo(emprestimo);
         System.out.println("Fim teste busca Emprestimo. \r\n");
     }
 }

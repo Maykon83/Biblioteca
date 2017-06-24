@@ -27,21 +27,26 @@ public abstract class DAO_XML_Generico implements DAOInterface {
     }
 
     public <K, V> void salvarArquivo(HashMap<K, V> map, String endereco) throws IOException {
-        FileOutputStream fos = new FileOutputStream(verificaArquivo(endereco));
-        BufferedOutputStream bos = new BufferedOutputStream(fos);
-        XMLEncoder xmlenc = new XMLEncoder(bos);
-        xmlenc.setPersistenceDelegate(LocalDate.class,
-                new PersistenceDelegate() {
-            @Override
-            protected Expression instantiate(Object localDate, Encoder encdr) {
-                return new Expression(localDate,
-                        LocalDate.class,
-                        "parse",
-                        new Object[]{localDate.toString()});
-            }
-        });
-        xmlenc.writeObject(map);
-        xmlenc.close();
+        try {
+
+            FileOutputStream fos = new FileOutputStream(verificaArquivo(endereco));
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            XMLEncoder xmlenc = new XMLEncoder(bos);
+            xmlenc.setPersistenceDelegate(LocalDate.class,
+                    new PersistenceDelegate() {
+                @Override
+                protected Expression instantiate(Object localDate, Encoder encdr) {
+                    return new Expression(localDate,
+                            LocalDate.class,
+                            "parse",
+                            new Object[]{localDate.toString()});
+                }
+            });
+            xmlenc.writeObject(map);
+            xmlenc.close();
+        } catch (IOException e) {
+            System.out.println("ERRO! " + e.getMessage());
+        }
     }
 
     public <K, V> HashMap<K, V> carregarArquivo(String endereco) throws IOException {
